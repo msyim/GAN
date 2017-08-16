@@ -61,19 +61,23 @@ fake_pred = Discriminator(data_g)
 generator_var_list = [weights[i] for i in ["GW1","Gb1","GW2","Gb2","GW3","Gb3"]]
 discriminator_var_list= [weights[i] for i in ["DW1","Db1","DW2","Db2","DW3","Db3"]]
 
+# In section 3 of the paper, the author suggests maximizing "log(D(G(z)))" 
+# instead of minimizing "log(1-D(G(z)))" because "log(1-D(G(z)))" saturates when G is
+# not good enough at counterfeiting.
 initCriterion = (-1)*tf.reduce_mean(tf.log(fake_pred))
 initOptim = tf.train.AdamOptimizer(0.0001).minimize(initCriterion, var_list=generator_var_list)
 
+# After G learns for a bit (seems like about 2 epochs should be enough) we start using
+# the loss function for G and D defined in the algorithm.
 stableCriterionForD = (-1)*tf.reduce_mean(tf.log(pred) + tf.log(1-fake_pred))
 stableOptForD = tf.train.AdamOptimizer(0.0001).minimize(stableCriterionForD, var_list=discriminator_var_list)
-
 stableCriterionForG = tf.reduce_mean(tf.log(1-fake_pred))
 stableOptForG = tf.train.AdamOptimizer(0.0001).minimize(stableCriterionForG, var_list=generator_var_list)
 
 with tf.Session() as sess:
   sess.run(tf.global_variables_initializer())
   for epoch in range(epochs):
-    num_batches = int(mnist.train.num_examples/(batch_size))
+    num_batches = int(mnist.train.num_examples/(K*batch_size))
     for i in range(num_batches):
       # training ratio D:G = K:1 
       # First train D for K times
@@ -82,15 +86,19 @@ with tf.Session() as sess:
         batch_x = 2*batch_x - 1
         dloss, _, p,fp = sess.run([stableCriterionForD, stableOptForD, pred, fake_pred], feed_dict={X:batch_x, keep_prob: 1})
 
+      # use initial criterion for about 2 epochs
       if epoch < 2: 
         gloss,_,fp,g,z = sess.run([initCriterion, initOptim, fake_pred,data_g,data_z], feed_dict={keep_prob:1.0})
         print "[E:%d][B:%d] gloss : %f" % (epoch,i,gloss)
 
+        # show samples of generated images.
         for j in range(0, 3):
           plt.subplot(311 + (j))
           image = np.reshape(g[j],[28,28])
           plt.imshow(image, interpolation='nearest', cmap='gray')
         plt.show()
+      
+      # After 2 epochs, use stable criterion
       else :
         gloss,_,fp,g = sess.run([stableCriterionForG, stableOptForG,fake_pred,data_g], feed_dict={keep_prob:1})
 
