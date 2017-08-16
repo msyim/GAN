@@ -19,10 +19,42 @@ An implementation of the paper : "Generative Adversarial Nets" using TensorFlow.
 ### Generated images after training with initial criterion for 2 epochs
 * After Epoch 1
 
-![](https://github.com/msyim/GAN/blob/master/GANepoch1.png)
+![](https://github.com/msyim/GAN/blob/master/images/GANepoch1.png)
 
 * After Epoch 2
 
-![](https://github.com/msyim/GAN/blob/master/GANepoch2.png)
+![](https://github.com/msyim/GAN/blob/master/images/GANepoch2.png)
 
 ### Generated images after training 500 epochs (in addition to the training 2 epochs with initial criterion)
+
+* After Epoch 10
+
+![](https://github.com/msyim/GAN/blob/master/images/GANepoch10.png)
+
+* After Epoch 30
+
+![](https://github.com/msyim/GAN/blob/master/images/GANepoch30.png)
+
+* After Epoch 100
+
+![](https://github.com/msyim/GAN/blob/master/images/GAN100.png)
+
+
+* After Epoch 200
+
+![](https://github.com/msyim/GAN/blob/master/images/GAN200.png)
+
+
+* After Epoch 300
+
+![](https://github.com/msyim/GAN/blob/master/images/GAN300.png)
+
+
+* After Epoch 400
+
+![](https://github.com/msyim/GAN/blob/master/images/GAN400.png)
+
+
+* After Epoch 500
+
+![](https://github.com/msyim/GAN/blob/master/images/GAN500.png)
