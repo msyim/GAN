@@ -17,6 +17,12 @@ An implementation of the paper : "Generative Adversarial Nets" using TensorFlow.
  5) 1-d   fully connected/sigmoid
 
 ### Generated images after training with initial criterion for 2 epochs
+* After Epoch 1
 
+![](https://github.com/msyim/GAN/blob/master/GANepoch1.png)
+
+* After Epoch 2
+
+![](https://github.com/msyim/GAN/blob/master/GANepoch2.png)
 
 ### Generated images after training 500 epochs (in addition to the training 2 epochs with initial criterion)
