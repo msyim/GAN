@@ -1,7 +1,7 @@
 # GAN
 An implementation of the paper : "Generative Adversarial Nets" using TensorFlow.  Impelemented initial training criterion (maximizing log(D(G(z)))) as suggested in the paper in addition to the loss functions defined in the main algorithm.
 
-# Architecture Summary
+### Architecture Summary
 
 * Generator layers:
  1) 128-d random Gaussian 
@@ -16,4 +16,6 @@ An implementation of the paper : "Generative Adversarial Nets" using TensorFlow.
  4) 128-d fully connected/relu
  5) 1-d   fully connected/sigmoid
 
-# Generated images after training 500 epochs
+### Generated images after training with initial criterion for 2 epochs
+
+### Generated images after training 500 epochs (in addition to the training 2 epochs with initial criterion)
