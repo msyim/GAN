@@ -18,4 +18,5 @@ An implementation of the paper : "Generative Adversarial Nets" using TensorFlow.
 
 ### Generated images after training with initial criterion for 2 epochs
 
+
 ### Generated images after training 500 epochs (in addition to the training 2 epochs with initial criterion)
